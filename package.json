@@ -1,47 +1,50 @@
 {
-  "name": "react-hyperscript",
-  "description": "Hyperscript syntax for React.js markup",
-  "version": "3.0.0",
-  "homepage": "https://github.com/mlmorg/react-hyperscript",
-  "author": {
-    "name": "Matt Morgan",
-    "email": "matt@mlmorg.com",
-    "url": "http://mlmorg.com"
-  },
+  "name": "karet-hyperscript",
+  "description": "Hyperscript syntax for Karet (React with streams) markup",
+  "version": "4.0.0",
+  "homepage": "https://github.com/fiatjaf/karet-hyperscript",
   "keywords": [
     "react",
     "react.js",
+    "karet",
+    "calmm-js",
+    "calmm",
+    "observables",
+    "streams",
+    "reactive",
     "hyperscript",
     "markup",
     "dom"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/mlmorg/react-hyperscript.git"
+    "url": "git://github.com/fiatjaf/karet-hyperscript.git"
   },
   "bugs": {
-    "url": "https://github.com/mlmorg/react-hyperscript/issues"
+    "url": "https://github.com/fiatjaf/karet-hyperscript/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/mlmorg/react-hyperscript/blob/master/LICENSE"
+      "url": "https://github.com/fiatjaf/karet-hyperscript/blob/master/LICENSE"
     }
   ],
   "main": "index.js",
   "peerDependencies": {
-    "react": ">= 0.12.0 < 16.0.0"
+    "karet": "^1.2",
+    "kefir": "^3.7"
   },
   "devDependencies": {
     "eslint": "^2.0.0",
     "eslint-config-mlmorg": "^2.0.0",
-    "react": ">= 0.12.0 < 16.0.0",
     "react-dom": "^15.0.0",
+    "karet": "^1.2",
+    "kefir": "^3.7",
     "tap-spec": "^4.1.1",
     "tape": "^4.5.1"
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run lint && node test/index.js | tap-spec"
+    "test": "node test/index.js | tap-spec"
   }
 }

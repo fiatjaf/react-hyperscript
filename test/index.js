@@ -2,6 +2,7 @@
 var console = require('console');
 var React = require('react');
 var ReactDOM = require('react-dom/server');
+var Kefir = require('kefir');
 var test = require('tape');
 
 var h = require('../');
@@ -22,16 +23,32 @@ var renderTests = {
     dom: h('h1.foo', {className: 'bar'}),
     html: '<h1 class="foo bar"></h1>'
   },
+  'tag with an id and classes in selector and observable props': {
+    dom: h('h1.foo', {className: Kefir.constant('bar')}),
+    html: '<h1 class="foo bar"></h1>'
+  },
   'tag with other properties': {
     dom: h('a', {href: 'http://www.google.com'}),
+    html: '<a href="http://www.google.com"></a>'
+  },
+  'tag with other observable properties': {
+    dom: h('a', {href: Kefir.constant('http://www.google.com')}),
     html: '<a href="http://www.google.com"></a>'
   },
   'tag with string as third argument': {
     dom: h('h1', null, 'Hello World!'),
     html: '<h1>Hello World!</h1>'
   },
+  'tag with observable string as third argument': {
+    dom: h('h1', null, Kefir.constant('Hello World!')),
+    html: '<h1>Hello World!</h1>'
+  },
   'tag with string as second argument': {
     dom: h('h1', 'Hello World!'),
+    html: '<h1>Hello World!</h1>'
+  },
+  'tag with observable string as second argument': {
+    dom: h('h1', Kefir.constant('Hello World!')),
     html: '<h1>Hello World!</h1>'
   },
   'tag with number as second argument': {
@@ -53,6 +70,13 @@ var renderTests = {
     ]),
     html: '<h1><span></span><span></span></h1>'
   },
+  'tag with observablechildren array as third argument': {
+    dom: h('h1', null, Kefir.constant([
+      h('span'),
+      h('span')
+    ])),
+    html: '<h1><span></span><span></span></h1>'
+  },
   'tag with children array as second argument': {
     dom: h('h1', [
       h('span'),
@@ -60,8 +84,19 @@ var renderTests = {
     ]),
     html: '<h1><span></span><span></span></h1>'
   },
+  'tag with observable children array as second argument': {
+    dom: h('h1', Kefir.constant([
+      h('span', {key: 1}),
+      h('span', {key: 2})
+    ])),
+    html: '<h1><span></span><span></span></h1>'
+  },
   'tag with nested dataset': {
     dom: h('div', {dataset: {foo: 'bar', bar: 'oops'}}),
+    html: '<div data-foo="bar" data-bar="oops"></div>'
+  },
+  'tag with nested observable dataset': {
+    dom: h('div', {dataset: {foo: Kefir.constant('bar'), bar: 'oops'}}),
     html: '<div data-foo="bar" data-bar="oops"></div>'
   },
   'tag with nested attributes': {

@@ -1,6 +1,8 @@
 /* eslint-disable complexity, max-statements */
 'use strict';
 
+var Kefir = require('kefir');
+
 var classIdSplit = /([\.#]?[a-zA-Z0-9_:-]+)/;
 var notClassId = /^\.|#/;
 
@@ -45,10 +47,18 @@ function parseTag(tag, props) {
 
   if (classes) {
     if (props.className) {
-      classes.push(props.className);
+      if (props.className instanceof Kefir.Observable) {
+        props.className = props.className.map(function (className) {
+          classes.push(className);
+          return classes.join(' ');
+        })
+      } else {
+        classes.push(props.className);
+        props.className = classes.join(' ');
+      }
+    } else {
+      props.className = classes.join(' ');
     }
-
-    props.className = classes.join(' ');
   }
 
   return tagName ? tagName.toLowerCase() : 'div';

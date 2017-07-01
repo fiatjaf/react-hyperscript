@@ -1,5 +1,5 @@
-'use strict';
-var React = require('react');
+var React = require('karet');
+var Kefir = require('kefir');
 
 var parseTag = require('./parse-tag');
 
@@ -46,5 +46,6 @@ function h(componentOrTag, properties, children) {
 }
 
 function isChildren(x) {
-  return typeof x === 'string' || typeof x === 'number' || Array.isArray(x);
+  return typeof x === 'string' || typeof x === 'number' ||
+    Array.isArray(x) || x instanceof Kefir.Observable;
 }
